@@ -38,9 +38,7 @@ def filter_tweets(filter_text='bjp'):
     df = politics[politics['clean_tweet'].str.contains(str.lower(filter_text))]
     return df
 
-# creating plots
 
-# line chart
 
 
 def tweets_by_date(in_df):
@@ -59,13 +57,7 @@ def tweets_by_date(in_df):
             "y": val_l
         })
 
-    # return {
-    #     "data": list_of_dict,
-    #     "layout": {
-    #         "title": "# Tweets over Time",
-    #         "showlegend": True
-    #     }
-    # }
+ 
     return list_of_dict
 
 
@@ -109,14 +101,7 @@ def main():
 
         keyword = st.text_input('Enter a political keyword', 'bjp')
 
-        # l = tweets_by_date(filter_tweets(keyword))
-
-        # ay = plt.scatter([data['x'] for data in l], [data['y'] for data in l])
-        # ay = plt.plot([data['x'] for data in l], [data['y'] for data in l])
-
-        # # autolabel(ay)
-        # st.write(mpl_fig=ay)
-        # st.pyplot()
+       
 
         x, y = tweets_class(filter_tweets(keyword))
         ax = plt.bar(y, x)

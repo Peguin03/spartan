@@ -12,9 +12,9 @@ twitter_keys['access_token_secret'])
 
 api = tweepy.API(auth)
 
-res=api.search(q='*',count=20)
-# for tweet in res:
-#     print(tweet.text)
+# res=api.search(q='*',count=20)
+# # for tweet in res:
+# #     print(tweet.text)
 
-print(api.get_user('narendramodi'))
-print(res)
+# print(api.get_user('narendramodi'))
+# print(res)
