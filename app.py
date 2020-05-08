@@ -3,7 +3,6 @@ import datetime as dt
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from gotpy import got3 as got
 from induvidual_profile import getProfile
 from trends import trends
 import re
