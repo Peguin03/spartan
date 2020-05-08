@@ -5,6 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from gotpy import got3 as got
 from induvidual_profile import getProfile
+from trends import trends
+import re
 
 
 timestamp_format = "%Y-%m-%d %H:%M"
@@ -79,11 +81,13 @@ def main():
     st.title('Social and Information Networks')
     st.subheader('Data analysis for Indian Politics')
 
+    
     st.sidebar.title('Menu')
     menuItems = [
         'DashBoard',
         'Induvidual Analyser',
-        'Location based analyser',
+        'Politicians Data',
+        'Trends'
     ]
 
     item = st.sidebar.selectbox('', menuItems)
@@ -94,10 +98,21 @@ def main():
             </style>
             """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/COVID-19)'''
+    github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/spartan)'''
     st.sidebar.info(github)
 
     if item == 'DashBoard':
+        s='''
+        The data is extracted from the various social media platform is assigned a sentiment score.The technique used to assign the score is VADER (Valence Aware Dictionary and sentiment Reasoner).The sentiment score is calculated from a lexicon rule based dictionary and  the data is plotted for visual representation
+
+        ### Workflow
+            Extracting data from social media - data mostly from twitter.(The data extracted is from end of 2017 to 2018 just before 2019 Indian elections)
+            The data was filterer using keywords like India,Indian politics,bj,congress,ncp,nda,inc,election2019
+            The data was cleaned - removal of links,stopwords
+            Each tweet was asigned a sentiment score
+            The graphs shown is the result of grouping keywords and the sentiment score
+        '''
+        st.markdown(s)
 
         keyword = st.text_input('Enter a political keyword', 'bjp')
 
@@ -108,9 +123,55 @@ def main():
         autolabel(ax)
         st.write(mpl_fig=ax)
         st.pyplot()
+
+        
+
+        startingRadius = 0.7 + (0.3* (len(x)-1))
+        for i in range(0,len(x)):
+            scenario =y[i]
+            percentage = x[i]
+            textLabel = scenario + ' ' + str(percentage)
+            print(startingRadius)
+            
+            remainingPie = 100 - percentage
+
+            donut_sizes = [remainingPie, percentage]
+
+            plt.text(0.04, startingRadius + 0.07, textLabel, horizontalalignment='center', verticalalignment='center')
+            plt.pie(donut_sizes, radius=startingRadius, startangle=90, colors=['#d5f6da', '#5cdb6f'],
+                    wedgeprops={"edgecolor": "white", 'linewidth': 6})
+
+            startingRadius-=0.3
+
+        # equal ensures pie chart is drawn as a circle (equal aspect ratio)
+        plt.axis('equal')
+
+        # create circle and place onto pie chart
+        circle = plt.Circle(xy=(0, 0), radius=0.35, facecolor='white')
+        plt.gca().add_artist(circle)
+        st.pyplot()
+        
+
+
+
+        
+
+        
     elif item == 'Induvidual Analyser':
         name=st.text_input('Name','narendramodi')
         getProfile(name)
+
+    elif item=='Location based analyser':
+        f=open('data.geojson')
+        st.map(f)
+    elif item=='Politicians Data':
+        df=pd.read_csv('term-16.csv')
+        df=df.drop(['sort_name','twitter','id','facebook','term','start_date','end_date','image','gender','wikidata','wikidata_group','wikidata_area'],axis=1)
+        st.table(df)
+
+    elif item=='Trends':
+        trends()
+
         
 
 if __name__ == "__main__":
