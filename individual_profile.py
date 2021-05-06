@@ -196,8 +196,8 @@ class TweetsVisualizer():
         p.xaxis[0].formatter = DatetimeTickFormatter(months="%b %Y")
 
         
-
-    def create_mask(self, img_path, threshold=200):
+    @staticmethod
+    def create_mask(img_path, threshold=200):
         """
         Function to create a mask for word cloud.
         """
