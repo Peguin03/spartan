@@ -197,7 +197,7 @@ class TweetsVisualizer():
 
         
 
-    def create_mask(img_path, threshold=200):
+    def create_mask(self, img_path, threshold=200):
         """
         Function to create a mask for word cloud.
         """
