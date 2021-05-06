@@ -96,15 +96,6 @@ class TweetsAnalyzer():
         self.hashtags = OrderedDict(sorted(self.hashtags.items()))
 
         
-
-    def hashtags(self):
-        """
-        Function to return a dictionary containing all
-        hashtags from extracte data.
-        """
-
-        return self.hashtags
-
     def top_hashtags(self, top=1e10):
         popular = sorted(self.hashtags.items(), key=lambda h: h[1], reverse=1)
         return popular[:top]
@@ -206,15 +197,15 @@ class TweetsVisualizer():
 
         
 
-    def create_mask(self, img_path, threshold=200):
+    def create_mask(img_path, threshold=200):
         """
         Function to create a mask for word cloud.
         """
         def binarize_array(numpy_array, threshold=threshold):
             """Binarize a numpy array."""
 
-            for i in range(len(numpy_array)):
-                for j in range(len(numpy_array[0])):
+            for i, _ in enumerate(numpy_array):
+                for j, _ in enumerate(numpy_array[0]):
                     if numpy_array[i][j] > threshold:
                         numpy_array[i][j] = 255
                     else:
@@ -314,7 +305,6 @@ def getProfile(user):
     analyzer = TweetsAnalyzer(extractor)
     analyzer.analyze(user)
     visualizer = TweetsVisualizer(analyzer)
-    data = extractor.extract(user)
     fav, rt = analyzer.trending_tweets()
     fav_tw = analyzer.data['Tweets'][fav]
     rt_tw = analyzer.data['Tweets'][rt]
