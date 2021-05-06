@@ -32,7 +32,6 @@ class TweetsExtractor():
         # Return API with authentication:
         api = tweepy.API(auth)
         self.extractor = api
-        return
 
     def extract(self, user):
         """
@@ -74,7 +73,7 @@ class TweetsAnalyzer():
         self.data = None
         self.hashtags = {}
 
-        return
+        
 
     def analyze(self, user):
         """
@@ -96,7 +95,7 @@ class TweetsAnalyzer():
 
         self.hashtags = OrderedDict(sorted(self.hashtags.items()))
 
-        return
+        
 
     def hashtags(self):
         """
@@ -140,7 +139,7 @@ class TweetsVisualizer():
         self.data = self.analyzer.data
         self.hashtags = self.analyzer.hashtags
 
-        return
+        
 
     def retweets(self):
         """
@@ -160,15 +159,10 @@ class TweetsVisualizer():
         p.line(data['Date'], data['RTs'], legend_label='Trend', line_width=2)
         st.bokeh_chart(p, use_container_width=True)
         p.xaxis[0].formatter = DatetimeTickFormatter(months="%b %Y")
-        
-        # tret = pd.Series(data=data['RTs'].values, index=data['Date'])
 
-        # Lenghts along time:
-        # plt.title("Retweets along time")
-        # tret.plot(figsize=(16, 4), label="Retweets", color='g', legend=True)
         
         
-        return
+        
 
     def likes(self):
         """
@@ -188,14 +182,8 @@ class TweetsVisualizer():
         p.line(data['Date'], data['Likes'], legend_label='Trend', line_width=2)
         st.bokeh_chart(p, use_container_width=True)
         p.xaxis[0].formatter = DatetimeTickFormatter(months="%b %Y")
+       
         
-        # tfav = pd.Series(data=data['Likes'].values, index=data['Date'])
-
-        # Lenghts along time:
-        # plt.title("Likes along time")
-        # tfav.plot(figsize=(16, 4), label="Likes", color='b', legend=True)
-        # st.pyplot()
-        return
 
     def lengths(self):
         """
@@ -215,14 +203,8 @@ class TweetsVisualizer():
         p.line(data['Date'], data['len'], legend_label='Trend', line_width=2)
         st.bokeh_chart(p, use_container_width=True)
         p.xaxis[0].formatter = DatetimeTickFormatter(months="%b %Y")
+
         
-        # tlen = pd.Series(data=data['len'].values, index=data['Date'])
-
-        # Lenghts along time:
-        # plt.title("Lenghts along time")
-        # tlen.plot(figsize=(16, 4), label="Lenghts", color='r', legend=True)
-
-        return
 
     def create_mask(self, img_path, threshold=200):
         """
