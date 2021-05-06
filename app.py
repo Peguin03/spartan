@@ -46,7 +46,7 @@ def tweets_by_date(in_df):
 
     unq_class = in_df.sentiment_class.unique()
     list_of_dict = []
-    for j in range(0, len(unq_class)):
+    for j,_ in enumerate(unq_class):
         df = in_df.loc[in_df['sentiment_class'] == unq_class[j]]
         df = df.reset_index(drop=True)
         group_date = df.groupby('date')['date'].count()
@@ -67,7 +67,7 @@ def tweets_class(in_df):
     unq_class = in_df.sentiment_class.unique()
     labels = []
     vals = []
-    for j in range(0, len(unq_class)):
+    for j,_ in enumerate(unq_class):
         df = in_df.loc[in_df['sentiment_class'] == unq_class[j]]
         len_df = len(df.index)
         labels.append(unq_class[j])
@@ -126,7 +126,7 @@ def main():
         
 
         startingRadius = 0.7 + (0.3* (len(x)-1))
-        for i in range(0,len(x)):
+        for i, _ in enumerate(len(x)):
             scenario =y[i]
             percentage = x[i]
             textLabel = scenario + ' ' + str(percentage)
