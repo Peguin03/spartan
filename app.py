@@ -85,7 +85,6 @@ def main():
     menuItems = [
         'DashBoard',
         'Individual Analyzer',
-        #'HashTag Analyzer'
         'Politicians Data',
         'Trends'
     ]
@@ -98,8 +97,8 @@ def main():
             </style>
             """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    # github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/spartan)'''
-    # st.sidebar.info(github)
+    github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/spartan)'''
+    st.sidebar.info(github)
 
     if item == 'DashBoard':
         s='''
