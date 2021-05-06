@@ -9,7 +9,7 @@ Analysis of data from twitter on the Indian Political Scenario
 ### Features
    - Trend analyser
    - polarity analyser for a keyword
-   - Induvidual profile analyser
+   - Individual profile analyser
    - influence calculator
    - Political data
 
