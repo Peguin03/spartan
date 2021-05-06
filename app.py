@@ -3,7 +3,7 @@ import datetime as dt
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from induvidual_profile import getProfile
+from individual_profile import getProfile
 from trends import trends
 import re
 
@@ -84,7 +84,8 @@ def main():
     st.sidebar.title('Menu')
     menuItems = [
         'DashBoard',
-        'Induvidual Analyser',
+        'Individual Analyzer',
+        #'HashTag Analyzer'
         'Politicians Data',
         'Trends'
     ]
@@ -97,8 +98,8 @@ def main():
             </style>
             """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/spartan)'''
-    st.sidebar.info(github)
+    # github = '''[ Fork/Star on Github](https://github.com/abhayrpatel10/spartan)'''
+    # st.sidebar.info(github)
 
     if item == 'DashBoard':
         s='''
@@ -156,7 +157,7 @@ def main():
         
 
         
-    elif item == 'Induvidual Analyser':
+    elif item == 'Individual Analyzer':
         name=st.text_input('Name','narendramodi')
         getProfile(name)
 
